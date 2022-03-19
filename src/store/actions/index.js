@@ -1,8 +1,7 @@
 export {
-    addIngredient,
-    removeIngredient,
-    initIngredients
-} from './burgerBuilder';
+    fetchSemesters,
+    selectSemester
+} from './finder';
 // export {
 //     purchaseBurger,
 //     purchaseInit,

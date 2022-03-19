@@ -1,14 +1,15 @@
-import React, { Fragment, useState } from "react";
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { connect } from "react-redux";
+import * as actions from "store/actions/";
 import styles from "./styles.module.css";
 
-const Init = () => {
+const Init = (props) => {
+  const navigate = useNavigate();
 
-  const sems = ['22-even','22-odd'];
-  let sem_selected = null;
-
-  const onChange = (val) => {
-    console.log(val); 
-  }
+  useEffect(() => {
+    props.onFetchSemesters();
+  }, []);
 
   return (
     <div className={styles.root}>
@@ -28,9 +29,9 @@ const Init = () => {
             <div className={styles.col2_1_sem_select_div}>
               <select
                   className={styles.col2_1_sem_select}
-                  value={sem_selected}
-                  onChange={(e) => onChange(e.target.value)}>
-                  {sems.map(option => (
+                  value={props.selected_semester || ""}
+                  onChange={(e) => props.onSelectSemester(e.target.value)}>
+                  {props.semesters_list.map(option => (
                       <option key={option} value={option}>
                           {option}
                       </option>
@@ -38,11 +39,28 @@ const Init = () => {
               </select>
             </div>
           </div>
-          <button className={styles.button}>Start</button>
+          <button className={styles.button} onClick={() => navigate("/finder")}>Start</button>
         </div>
       </div>
     </div>
   );
 };
 
-export default Init;
+const mapStateToProps = (state) => {
+  return {
+    semesters_list: state.finder.semesters_list,
+    selected_semester: state.finder.selected_semester
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onFetchSemesters: () => dispatch(actions.fetchSemesters()), 
+    onSelectSemester: (semester) => dispatch(actions.selectSemester(semester)), 
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Init);
