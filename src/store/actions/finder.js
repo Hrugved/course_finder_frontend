@@ -30,3 +30,29 @@ export const fetchSemesters = () => {
             } );
     };
 };
+
+const setInit = ( data ) => {
+    console.log('setInit: '+data);
+    return {
+        type: actionTypes.SET_INIT_DATA,
+        data: data
+    };
+};
+
+export const fetchInit = (semester) => {
+    console.log('fetchInit');
+    return dispatch => {
+        axios.get('/init', {
+            params: {
+                semester: '22-even'
+            }
+          })
+            .then( response => {
+               dispatch(setInit(response.data));
+            } )
+            .catch( error => {
+                // dispatch(fetchIngredientsFailed());
+                console.log('Error fetching init!', error);
+            } );
+    };
+};

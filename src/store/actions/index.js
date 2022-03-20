@@ -1,6 +1,7 @@
 export {
     fetchSemesters,
-    selectSemester
+    selectSemester,
+    fetchInit
 } from './finder';
 // export {
 //     purchaseBurger,
