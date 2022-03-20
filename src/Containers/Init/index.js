@@ -11,6 +11,11 @@ const Init = (props) => {
     props.onFetchSemesters();
   }, []);
 
+  const onStart = () => {
+    props.onInitFetch();
+    navigate("/finder");
+  }
+
   return (
     <div className={styles.root}>
       <div className={styles.col1}>
@@ -39,7 +44,7 @@ const Init = (props) => {
               </select>
             </div>
           </div>
-          <button className={styles.button} onClick={() => navigate("/finder")}>Start</button>
+          <button className={styles.button} onClick={() => onStart()}>Start</button>
         </div>
       </div>
     </div>
@@ -57,6 +62,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onFetchSemesters: () => dispatch(actions.fetchSemesters()), 
     onSelectSemester: (semester) => dispatch(actions.selectSemester(semester)), 
+    onInitFetch: () => dispatch(actions.fetchInit()), 
   };
 };
 

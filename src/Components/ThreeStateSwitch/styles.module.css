@@ -48,8 +48,8 @@
 
 .neutral:checked + .checkmark {
   background-color:  #ccc;
-  border:1px solid black;
   border-radius:30px;
+  border:1px solid transparent;
   
   background: rgb(238, 238, 238);
     background: -moz-linear-gradient(top, rgba(238, 238, 238, 1) 0%, rgba(204, 204, 204, 1) 100%);

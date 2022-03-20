@@ -4,3 +4,6 @@
 export const SET_SEMESTERS = 'SET_SEMESTERS';
 export const SELECT_SEMESTER = 'SELECT_SEMESTER';
 export const SET_INIT_DATA = 'SET_INIT_DATA';
+export const UPDATE_COURSE_TYPE = 'UPDATE_COURSE_TYPE';
+export const SET_LOADING = 'SET_LOADING';
+

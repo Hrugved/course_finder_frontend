@@ -8,9 +8,9 @@ const Finder = (props) => {
 
 
 
-  useEffect(() => {
-    props.onInitFetch();
-  }, []);
+  // useEffect(() => {
+  //   props.onInitFetch();
+  // }, []);
 
   return (
     <div className={styles.root}>

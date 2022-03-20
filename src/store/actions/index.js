@@ -1,7 +1,8 @@
 export {
     fetchSemesters,
     selectSemester,
-    fetchInit
+    fetchInit,
+    onUpdateFilterCourseTypes
 } from './finder';
 // export {
 //     purchaseBurger,

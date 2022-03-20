@@ -1,15 +1,17 @@
 import * as actionTypes from '../actions/actionTypes';
-import { updateObject } from 'store/utility';
+import { setCharAt, updateObject } from 'store/utility';
+import { threeStateSwitch } from 'constants';
 
 const initialState = {
     semesters_list: [],
-    selected_semester: null,
-    all_courses_map: null,
+    selected_semester: "",
+    all_courses_map: {},
     selected_courses_list: [],
-    sched_bitmap: null,
-    course_types_included: null,
-    course_types_excluded: null,
-    course_types_map: null
+    sched_bitmap: "",
+    course_types_included: "",
+    course_types_excluded: "",
+    course_types_map: {},
+    loading: false
 };
 
 const setSemesters = ( state, action ) => {
@@ -33,16 +35,36 @@ const setInitData = ( state, {data} ) => {
         course_types_excluded: data.course_types_excluded,
         sched_bitmap: data.sched_bitmap,
         all_courses_map: new Map(data.all_courses.map(i => [i.course_id,i])),
-        course_types_map: new Map(data.course_types_map.map(([v, k]) => [v,k]))
+        course_types_map: new Map(data.course_types.map(([v, k]) => [v,k]))
+    }
+    console.log('updatedState'+[...updatedState.course_types_map.keys()]);
+    const obj = updateObject( state, updatedState );
+    console.log('obj'+obj.course_types_map);
+    console.log('obj ctm'+[...obj.course_types_map.keys()]);
+    return obj;
+};
+
+const updateCourseType = ( state, {pos,val} ) => {
+    const val_include = (val===threeStateSwitch.neutral) ? '0' : (val===threeStateSwitch.include ? '1' : '0');
+    const val_exclude = (val===threeStateSwitch.neutral) ? '0' : (val===threeStateSwitch.exclude ? '1' : '0');
+    const updatedState = {
+        course_types_included: setCharAt(state.course_types_included,pos,val_include),
+        course_types_excluded: setCharAt(state.course_types_excluded,pos,val_exclude)
     }
     return updateObject( state, updatedState );
 };
+
+const setLoading = (state,{val}) => {
+    return updateObject( state, {loading: val} );
+}
 
 const reducer = ( state = initialState, action ) => {
     switch ( action.type ) {
         case actionTypes.SET_SEMESTERS: return setSemesters( state, action );
         case actionTypes.SELECT_SEMESTER: return setSelectedSemester(state,action);
         case actionTypes.SET_INIT_DATA: return setInitData(state,action);
+        case actionTypes.UPDATE_COURSE_TYPE: return updateCourseType(state,action);
+        case actionTypes.SET_LOADING: return setLoading(state,action);
         default: return state;
     }
 };

@@ -1,5 +1,6 @@
 import * as actionTypes from './actionTypes';
 import axios from 'axios-server';
+import { threeStateSwitch } from 'constants';
 
 export const selectSemester = ( semester ) => {
     console.log('selectSemester: '+semester);
@@ -20,9 +21,11 @@ const setSemesters = ( semesters ) => {
 export const fetchSemesters = () => {
     console.log('fetchSemesters');
     return dispatch => {
+        dispatch( setLoading(true) );
         axios.get( '/semesters' )
             .then( response => {
                dispatch(setSemesters(response.data));
+               dispatch(setLoading(false))
             } )
             .catch( error => {
                 // dispatch(fetchIngredientsFailed());
@@ -42,17 +45,34 @@ const setInit = ( data ) => {
 export const fetchInit = (semester) => {
     console.log('fetchInit');
     return dispatch => {
+        dispatch( setLoading(true) );
         axios.get('/init', {
             params: {
-                semester: '22-even'
+                semester: semester
             }
           })
             .then( response => {
                dispatch(setInit(response.data));
+               dispatch(setLoading(false))
             } )
             .catch( error => {
                 // dispatch(fetchIngredientsFailed());
                 console.log('Error fetching init!', error);
             } );
+    };
+};
+
+export const onUpdateFilterCourseTypes = ( pos, val ) => {
+    return {
+        type: actionTypes.UPDATE_COURSE_TYPE,
+        pos: pos,
+        val: val
+    };
+};
+
+const setLoading = ( val ) => {
+    return {
+        type: actionTypes.SET_LOADING,
+        val: val
     };
 };
