@@ -8,5 +8,6 @@ export const SET_INIT_DATA = 'SET_INIT_DATA';
 export const UPDATE_COURSE_TYPE = 'UPDATE_COURSE_TYPE';
 export const UPDATE_BRANCH = 'UPDATE_BRANCH';
 export const UPDATE_CREDITS = 'UPDATE_CREDITS';
+export const UPDATE_CLASH = 'UPDATE_CLASH';
 
 

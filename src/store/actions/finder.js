@@ -86,6 +86,13 @@ export const onUpdateCredits = ( credits ) => {
     };
 };
 
+export const onUpdateClash = ( Clash ) => {
+    return {
+        type: actionTypes.UPDATE_CLASH,
+        clash: Clash
+    };
+};
+
 const setLoading = ( val ) => {
     return {
         type: actionTypes.SET_LOADING,

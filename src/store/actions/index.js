@@ -4,7 +4,8 @@ export {
     fetchInit,
     onUpdateFilterCourseTypes,
     onUpdateFilterBranch,
-    onUpdateCredits
+    onUpdateCredits,
+    onUpdateClash
 } from './finder';
 // export {
 //     purchaseBurger,

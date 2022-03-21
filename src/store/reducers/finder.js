@@ -14,6 +14,7 @@ const initialState = {
     branch_map: {},
     credits: [0,20],
     loading: false,
+    clash: false
 };
 
 const setSemesters = ( state, action ) => {
@@ -68,6 +69,11 @@ const updateCredits = (state,{credits}) => {
     return updateObject( state, {credits: credits} );
 }
 
+const updateClash = (state,{clash}) => {
+    console.log(clash);
+    return updateObject( state, {clash: clash} );
+}
+
 const reducer = ( state = initialState, action ) => {
     switch ( action.type ) {
         case actionTypes.SET_SEMESTERS: return setSemesters( state, action );
@@ -77,6 +83,7 @@ const reducer = ( state = initialState, action ) => {
         case actionTypes.SET_LOADING: return setLoading(state,action);
         case actionTypes.UPDATE_BRANCH: return updateBranch(state,action);
         case actionTypes.UPDATE_CREDITS: return updateCredits(state,action);
+        case actionTypes.UPDATE_CLASH: return updateClash(state,action);
         default: return state;
     }
 };

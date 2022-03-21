@@ -5,6 +5,7 @@ import styles from "./styles.module.css";
 import CourseTypes from "./CourseTypes";
 import Branch from "./Branch"
 import Credits from "./Credits"
+import Clash from './Clash'
 
 const Finder = (props) => {
 
@@ -27,13 +28,16 @@ const Finder = (props) => {
             <div className={styles.creditsBox}>
               <Credits/>
             </div>  
+            <div className={styles.clashBox}>
+              <Clash/>
+            </div>  
             <div className={styles.courseFilterBox}>
               <CourseTypes />
             </div>  
             <div className={styles.branchFilterBox}>
               <Branch />
            </div>  
-          
+
           </div>
           
         </div>

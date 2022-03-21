@@ -55,7 +55,7 @@
   padding: 1rem;
 }
 
-.courseFilterBox, .branchFilterBox, .creditsBox {
+.courseFilterBox, .branchFilterBox, .creditsBox, .clashBox {
   overflow-x: hidden;
   overflow-y: auto;
   background-color: var(--cp-1-t);
@@ -80,6 +80,14 @@
 
 .creditsBox {
   grid-area: 1 / 1 / 2 / 2;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.clashBox {
+  grid-area: 1 / 2 / 2 / 3;
   width: 100%;
   display: flex;
   align-items: center;
