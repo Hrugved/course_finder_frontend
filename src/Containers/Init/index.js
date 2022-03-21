@@ -12,7 +12,7 @@ const Init = (props) => {
   }, []);
 
   const onStart = () => {
-    props.onInitFetch();
+    props.onInitFetch(props.selected_semester);
     navigate("/finder");
   }
 
@@ -62,7 +62,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onFetchSemesters: () => dispatch(actions.fetchSemesters()), 
     onSelectSemester: (semester) => dispatch(actions.selectSemester(semester)), 
-    onInitFetch: () => dispatch(actions.fetchInit()), 
+    onInitFetch: (semester) => dispatch(actions.fetchInit(semester)), 
   };
 };
 

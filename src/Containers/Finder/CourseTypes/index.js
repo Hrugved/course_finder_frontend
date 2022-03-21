@@ -12,7 +12,7 @@ const CourseTypes = (props) => {
     return (<p>Loading...</p>)
   }
   return (
-    <div>
+    <Fragment>
       {[...props.course_types_map.keys()].map(type => {
         const bitmapPos = props.course_types_map.get(type);
         let val = threeStateSwitch.neutral; // neutral
@@ -20,12 +20,12 @@ const CourseTypes = (props) => {
         else if(props.course_types_excluded[bitmapPos]==='1') val=threeStateSwitch.exclude;
         return (
           <div key={bitmapPos} className={styles.wrapper}>
-            <p>{type}</p>
+            <p className={styles.name}>{type}</p>
             <ThreeStateSwitch name={bitmapPos} onChange={(val) => props.onUpdate(bitmapPos,val)} value={val}/>
           </div>
         )
       })}
-    </div>
+    </Fragment>
   );
 };
 

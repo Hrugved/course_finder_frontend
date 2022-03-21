@@ -43,7 +43,7 @@ const setInit = ( data ) => {
 };
 
 export const fetchInit = (semester) => {
-    console.log('fetchInit');
+    console.log('fetchInit:'+semester);
     return dispatch => {
         dispatch( setLoading(true) );
         axios.get('/init', {
@@ -67,6 +67,22 @@ export const onUpdateFilterCourseTypes = ( pos, val ) => {
         type: actionTypes.UPDATE_COURSE_TYPE,
         pos: pos,
         val: val
+    };
+};
+
+export const onUpdateFilterBranch = ( branch, val ) => {
+    return {
+        type: actionTypes.UPDATE_BRANCH,
+        branch,
+        val
+    };
+};
+
+export const onUpdateCredits = ( credits ) => {
+    console.log('onUpdateCredits:'+credits);
+    return {
+        type: actionTypes.UPDATE_CREDITS,
+        credits
     };
 };
 

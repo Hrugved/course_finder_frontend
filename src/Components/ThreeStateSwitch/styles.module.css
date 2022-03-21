@@ -1,7 +1,7 @@
 .wrapper{
   width:61px;
   background: rgba(0, 0, 0, 0.4);
-  margin:20px;
+  /* margin:20px; */
   height: 21px;
   border-radius: 30px;
   cursor: pointer; /* TODO: not working */

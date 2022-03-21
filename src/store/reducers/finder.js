@@ -11,7 +11,9 @@ const initialState = {
     course_types_included: "",
     course_types_excluded: "",
     course_types_map: {},
-    loading: false
+    branch_map: {},
+    credits: [0,20],
+    loading: false,
 };
 
 const setSemesters = ( state, action ) => {
@@ -35,13 +37,10 @@ const setInitData = ( state, {data} ) => {
         course_types_excluded: data.course_types_excluded,
         sched_bitmap: data.sched_bitmap,
         all_courses_map: new Map(data.all_courses.map(i => [i.course_id,i])),
-        course_types_map: new Map(data.course_types.map(([v, k]) => [v,k]))
+        course_types_map: new Map(data.course_types.map(([v, k]) => [v,k])),
+        branch_map: new Map(data.branch_list.sort().map(name => [name,threeStateSwitch.neutral]))
     }
-    console.log('updatedState'+[...updatedState.course_types_map.keys()]);
-    const obj = updateObject( state, updatedState );
-    console.log('obj'+obj.course_types_map);
-    console.log('obj ctm'+[...obj.course_types_map.keys()]);
-    return obj;
+    return updateObject( state, updatedState );
 };
 
 const updateCourseType = ( state, {pos,val} ) => {
@@ -58,6 +57,17 @@ const setLoading = (state,{val}) => {
     return updateObject( state, {loading: val} );
 }
 
+const updateBranch = ( state, {branch,val} ) => {
+    const updatedState = {
+        branch_map: new Map(state.branch_map).set(branch,val)
+    }
+    return updateObject( state, updatedState );
+};
+
+const updateCredits = (state,{credits}) => {
+    return updateObject( state, {credits: credits} );
+}
+
 const reducer = ( state = initialState, action ) => {
     switch ( action.type ) {
         case actionTypes.SET_SEMESTERS: return setSemesters( state, action );
@@ -65,6 +75,8 @@ const reducer = ( state = initialState, action ) => {
         case actionTypes.SET_INIT_DATA: return setInitData(state,action);
         case actionTypes.UPDATE_COURSE_TYPE: return updateCourseType(state,action);
         case actionTypes.SET_LOADING: return setLoading(state,action);
+        case actionTypes.UPDATE_BRANCH: return updateBranch(state,action);
+        case actionTypes.UPDATE_CREDITS: return updateCredits(state,action);
         default: return state;
     }
 };
