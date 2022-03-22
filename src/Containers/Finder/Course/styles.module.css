@@ -1,0 +1,25 @@
+@import 'vars.css';
+
+.wrapper {
+  display: grid;
+  grid-template: min-content 1fr / 1fr;
+  grid-gap: 1rem;
+  height: 100%;
+  padding: 2rem 0;
+}
+
+.SearchBox {
+  background-color: var(--cp-1-t);
+  padding: 1rem 2rem;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}
+
+.ViewBox {
+  overflow-x: hidden;
+  overflow-y: auto;
+  background-color: var(--cp-1-t);
+  padding: 1rem 2rem;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}

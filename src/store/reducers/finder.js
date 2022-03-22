@@ -6,7 +6,7 @@ const initialState = {
     semesters_list: [],
     selected_semester: "",
     all_courses_map: {},
-    selected_courses_list: [],
+    selected_courses_list: [], // [[id,clash]]
     sched_bitmap: "",
     course_types_included: "",
     course_types_excluded: "",
@@ -39,8 +39,11 @@ const setInitData = ( state, {data} ) => {
         sched_bitmap: data.sched_bitmap,
         all_courses_map: new Map(data.all_courses.map(i => [i.course_id,i])),
         course_types_map: new Map(data.course_types.map(([v, k]) => [v,k])),
-        branch_map: new Map(data.branch_list.sort().map(name => [name,threeStateSwitch.neutral]))
+        branch_map: new Map(data.branch_list.sort().map(name => [name,threeStateSwitch.neutral])),
+        selected_courses_list: data.all_courses.map(i => [i.course_id,false])
     }
+    console.log([...updatedState.all_courses_map.entries()]);
+    console.log([...updatedState.selected_courses_list]);
     return updateObject( state, updatedState );
 };
 

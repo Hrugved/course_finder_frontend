@@ -2,29 +2,20 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import * as actions from "store/actions/";
 import styles from "./styles.module.css";
-import Filter from './Filter'
-import Course from './Course'
+import Search from "./Search"
+import View from "./View";
 
-const Finder = (props) => {
+const Filter = (props) => {
 
   return (
-    <div className={styles.root}>
-      <div className={styles.row1}>
-        <div className={styles.row1_col1}>
-          <Filter/>
-        </div>
-        <div className={styles.row1_col2}>
-          <Course />
-        </div>
-        <div className={styles.row1_col3}>
-          <div className={styles.detailBox}>
-            
-          </div>
-        </div>
+      <div className={styles.wrapper}>
+        <div className={styles.SearchBox}>
+          <Search/>
+        </div>  
+        <div className={styles.ViewBox}>
+          <View/>
+        </div>  
       </div>
-      <div className={styles.row2}>
-      </div>
-    </div>
   );
 };
 
@@ -44,4 +35,4 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Finder);
+)(Filter);
