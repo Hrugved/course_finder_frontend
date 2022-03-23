@@ -4,11 +4,21 @@ import * as actions from "store/actions/";
 import styles from "./styles.module.css";
 import Filter from './Filter'
 import Course from './Course'
+import { useNavigate } from "react-router-dom";
 
 const Finder = (props) => {
+  const navigate = useNavigate();
+
+  const {selected_semester} = props
+  useEffect(() => {
+    console.log('selected_semester:'+selected_semester);
+    if(selected_semester==="") {
+      navigate("/");
+    }
+  }, [selected_semester,navigate]);
 
   if(!props.init_fetched) {
-    return (<p>fetching data...</p>)
+    return (<p>Loading...</p>)
   }
 
   return (
@@ -35,6 +45,7 @@ const Finder = (props) => {
 const mapStateToProps = (state) => {
   return {
     init_fetched: state.finder.init_fetched,
+    selected_semester: state.finder.selected_semester
   };
 };
 

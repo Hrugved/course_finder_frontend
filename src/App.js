@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route } from "react-router";
+import { Routes, Route, Navigate } from "react-router";
 import Init from "./Containers/Init";
 import Finder from "./Containers/Finder";
 import styles from './styles.module.css';
@@ -10,6 +10,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Init/>} />
         <Route path="/Finder" element={<Finder/>} />
+        <Route path="*" element={<Navigate replace to="/" />} />
       </Routes>
     </div>
   );
