@@ -6,15 +6,15 @@ const initialState = {
     semesters_list: [],
     selected_semester: "",
     all_courses_map: {},
-    selected_courses_list: [], // [[id,clash]]
+    selected_courses_list: [],
     sched_bitmap: "",
-    course_types_included: "",
-    course_types_excluded: "",
-    course_types_map: {},
-    branch_map: {},
+    course_types_map: new Map(),
+    branch_map: new Map(),
     credits: [0,20],
     loading: false,
-    clash: false
+    clash: false,
+    filtered_courses_list: [],  // [[id,clash]]
+    searched_course_list: [] // search bar
 };
 
 const setSemesters = ( state, action ) => {
@@ -34,26 +34,22 @@ const setSelectedSemester = ( state, action ) => {
 
 const setInitData = ( state, {data} ) => {
     const updatedState = {
-        course_types_included: data.course_types_included,
-        course_types_excluded: data.course_types_excluded,
         sched_bitmap: data.sched_bitmap,
         all_courses_map: new Map(data.all_courses.map(i => [i.course_id,i])),
-        course_types_map: new Map(data.course_types.map(([v, k]) => [v,k])),
-        branch_map: new Map(data.branch_list.sort().map(name => [name,threeStateSwitch.neutral])),
-        selected_courses_list: data.all_courses.map(i => [i.course_id,false])
+        course_types_map: new Map(data.course_types_list.map(name => [name,threeStateSwitch.neutral])),
+        branch_map: new Map(data.branch_list.sort().map(name => [name,true])),
+        filtered_courses_list: data.all_courses.map(i => [i.course_id,false])
     }
     console.log([...updatedState.all_courses_map.entries()]);
-    console.log([...updatedState.selected_courses_list]);
+    console.log([...updatedState.filtered_courses_list]);
     return updateObject( state, updatedState );
 };
 
-const updateCourseType = ( state, {pos,val} ) => {
-    const val_include = (val===threeStateSwitch.neutral) ? '0' : (val===threeStateSwitch.include ? '1' : '0');
-    const val_exclude = (val===threeStateSwitch.neutral) ? '0' : (val===threeStateSwitch.exclude ? '1' : '0');
+const updateCourseType = ( state, {course_type,val} ) => {
     const updatedState = {
-        course_types_included: setCharAt(state.course_types_included,pos,val_include),
-        course_types_excluded: setCharAt(state.course_types_excluded,pos,val_exclude)
+        course_types_map: new Map(state.course_types_map).set(course_type,val)
     }
+    console.log(updatedState);
     return updateObject( state, updatedState );
 };
 
@@ -61,9 +57,9 @@ const setLoading = (state,{val}) => {
     return updateObject( state, {loading: val} );
 }
 
-const updateBranch = ( state, {branch,val} ) => {
+const updateBranch = ( state, {branch,include} ) => {
     const updatedState = {
-        branch_map: new Map(state.branch_map).set(branch,val)
+        branch_map: new Map(state.branch_map).set(branch,include)
     }
     return updateObject( state, updatedState );
 };
@@ -77,6 +73,11 @@ const updateClash = (state,{clash}) => {
     return updateObject( state, {clash: clash} );
 }
 
+const updateFilteredCourseList = (state,{data}) => {
+    console.log('updateFilteredCourseList');
+    return updateObject( state, {filtered_courses_list: data} );
+}
+
 const reducer = ( state = initialState, action ) => {
     switch ( action.type ) {
         case actionTypes.SET_SEMESTERS: return setSemesters( state, action );
@@ -87,6 +88,7 @@ const reducer = ( state = initialState, action ) => {
         case actionTypes.UPDATE_BRANCH: return updateBranch(state,action);
         case actionTypes.UPDATE_CREDITS: return updateCredits(state,action);
         case actionTypes.UPDATE_CLASH: return updateClash(state,action);
+        case actionTypes.SET_FILTERED_COURSE_LIST: return updateFilteredCourseList(state,action);
         default: return state;
     }
 };

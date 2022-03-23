@@ -62,19 +62,19 @@ export const fetchInit = (semester) => {
     };
 };
 
-export const onUpdateFilterCourseTypes = ( pos, val ) => {
+export const onUpdateFilterCourseTypes = ( course_type, val ) => {
     return {
         type: actionTypes.UPDATE_COURSE_TYPE,
-        pos: pos,
-        val: val
+        course_type,
+        val
     };
 };
 
-export const onUpdateFilterBranch = ( branch, val ) => {
+export const onUpdateFilterBranch = ( branch, include ) => {
     return {
         type: actionTypes.UPDATE_BRANCH,
         branch,
-        val
+        include
     };
 };
 
@@ -99,3 +99,27 @@ const setLoading = ( val ) => {
         val: val
     };
 };
+
+const setFilteredCourseList = ( data ) => {
+    console.log('setFilteredCourseList: '+data);
+    return {
+        type: actionTypes.SET_FILTERED_COURSE_LIST,
+        data: data
+    };
+};
+
+export const fetchFilteredCourseList = (filter) => {
+    console.log('fetchFilteredCourseList:'+filter);
+    return dispatch => {
+        dispatch( setLoading(true) );
+        axios.post('/init', filter)
+            .then( response => {
+               dispatch(setFilteredCourseList(response.data));
+               dispatch(setLoading(false))
+            } )
+            .catch( error => {
+                // dispatch(fetchIngredientsFailed());
+                console.log('Error fetching init!', error);
+            } );
+    };
+}

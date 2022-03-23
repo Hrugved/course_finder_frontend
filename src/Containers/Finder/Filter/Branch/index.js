@@ -4,7 +4,7 @@ import * as actions from "store/actions/";
 import styles from "./styles.module.css";
 import ThreeStateSwitch from "Components/ThreeStateSwitch"
 import { useSearchParams } from "react-router-dom";
-import { threeStateSwitch } from "constants";
+import Switch from '@mui/material/Switch';
 
 const Branch = (props) => {
 
@@ -13,11 +13,15 @@ const Branch = (props) => {
   }
   return (
     <Fragment>
-      {[...props.branch_map.keys()].map(branch => {
+      {[...props.branch_map.entries()].map(([branch,include]) => {
         return (
           <div key={branch} className={styles.wrapper}>
             <p className={styles.name}>{branch}</p>
-            <ThreeStateSwitch name={branch} onChange={(val) => props.onUpdate(branch,val)} value={props.branch_map.get(branch)}/>
+            <Switch
+              checked={include}
+              onChange={(event) => props.onUpdate(branch,event.target.checked)}
+            />
+            {/* <ThreeStateSwitch name={branch} onChange={(val) => props.onUpdate(branch,val)} value={props.branch_map.get(branch)}/> */}
           </div>
         )
       })}
@@ -34,7 +38,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onUpdate: (branch,val) => dispatch(actions.onUpdateFilterBranch(branch,val)), 
+    onUpdate: (branch,include) => dispatch(actions.onUpdateFilterBranch(branch,include)), 
   };
 };
 

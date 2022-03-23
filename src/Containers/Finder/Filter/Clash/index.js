@@ -8,11 +8,6 @@ import * as actions from "store/actions/";
 import styles from './styles.module.css'
 
 const Clash = (props) => {
-  const [checked, setChecked] = React.useState(true);
-
-  const handleChange = (event) => {
-    setChecked(event.target.checked);
-  };
 
   return (
     <div className={styles.wrapper}>
