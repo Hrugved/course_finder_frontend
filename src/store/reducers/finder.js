@@ -39,13 +39,12 @@ const setInitData = ( state, {data} ) => {
         all_courses_map: new Map(data.all_courses.map(i => [i.course_id,i])),
         course_types_map: new Map(data.course_types_list.map(name => [name,threeStateSwitch.neutral])),
         branch_map: new Map(data.branch_list.sort().map(name => [name,true])),
-        filtered_courses_list: data.all_courses.map(i => [i.course_id,false]),
         init_fetched: true
     }
     // console.log('setInitData all_courses_map:'+JSON.stringify([...updatedState.all_courses_map.entries()]));
     console.log('setInitData all_courses_map:'+updatedState.all_courses_map.size);
     // console.log('setInitData, filtered_courses_list:'+JSON.stringify(updatedState.filtered_courses_list));
-    console.log('setInitData, filtered_courses_list:'+updatedState.filtered_courses_list.length);
+    // console.log('setInitData, filtered_courses_list:'+updatedState.filtered_courses_list.length);
     return updateObject( state, updatedState );
 };
 
