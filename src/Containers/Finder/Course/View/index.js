@@ -11,6 +11,8 @@ const View = (props) => {
     return (<p>Loading...</p>)
   }
 
+  console.log('View:'+props.filtered_course.length);
+
   return (
     <div className={styles.wrapper}>
       {props.filtered_course.map(([id,clash]) => {

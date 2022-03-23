@@ -45,7 +45,6 @@ const setInit = ( data ) => {
 export const fetchInit = (semester) => {
     console.log('fetchInit:'+semester);
     return dispatch => {
-        dispatch( setLoading(true) );
         axios.get('/init', {
             params: {
                 semester: semester
@@ -53,7 +52,6 @@ export const fetchInit = (semester) => {
           })
             .then( response => {
                dispatch(setInit(response.data));
-               dispatch(setLoading(false))
             } )
             .catch( error => {
                 // dispatch(fetchIngredientsFailed());
@@ -101,25 +99,26 @@ const setLoading = ( val ) => {
 };
 
 const setFilteredCourseList = ( data ) => {
-    console.log('setFilteredCourseList: '+data);
+    // console.log('setFilteredCourseList: '+JSON.stringify(data));
+    
     return {
         type: actionTypes.SET_FILTERED_COURSE_LIST,
-        data: data
+        data: data.map(obj => [obj.course_id,!!obj.clash])
     };
 };
 
 export const fetchFilteredCourseList = (filter) => {
-    console.log('fetchFilteredCourseList:'+filter);
+    console.log('fetchFilteredCourseList');
     return dispatch => {
         dispatch( setLoading(true) );
-        axios.post('/init', filter)
+        axios.post('/filter', {filter:filter})
             .then( response => {
                dispatch(setFilteredCourseList(response.data));
                dispatch(setLoading(false))
             } )
             .catch( error => {
                 // dispatch(fetchIngredientsFailed());
-                console.log('Error fetching init!', error);
+                console.log('Error fetching filter!', error);
             } );
     };
 }

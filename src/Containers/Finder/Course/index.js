@@ -27,7 +27,7 @@ const Course = (props) => {
       sched_bitmap: sched_bitmap
     }
     console.log('constructed filter:'+JSON.stringify(filter));
-    // onUpdate(filter);
+    onUpdate(filter);
   }, [selected_semester,clash,course_types_map,branch_map,credits,sched_bitmap,onUpdate]);
 
   if(props.loading) {
@@ -59,7 +59,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onUpdate: (filter) => dispatch(actions.onUpdateFilterCourseTypes(filter)), 
+    onUpdate: (filter) => dispatch(actions.fetchFilteredCourseList(filter)), 
   };
 };
 

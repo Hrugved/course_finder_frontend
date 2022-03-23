@@ -7,6 +7,10 @@ import Course from './Course'
 
 const Finder = (props) => {
 
+  if(!props.init_fetched) {
+    return (<p>fetching data...</p>)
+  }
+
   return (
     <div className={styles.root}>
       <div className={styles.row1}>
@@ -30,14 +34,13 @@ const Finder = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    semesters_list: state.finder.semesters_list,
-    selected_semester: state.finder.selected_semester
+    init_fetched: state.finder.init_fetched,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onInitFetch: () => dispatch(actions.fetchInit()), 
+    // onInitFetch: () => dispatch(actions.fetchInit()), 
   };
 };
 

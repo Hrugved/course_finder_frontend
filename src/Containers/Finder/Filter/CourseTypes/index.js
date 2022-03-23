@@ -8,10 +8,6 @@ import { threeStateSwitch } from "constants";
 
 const CourseTypes = (props) => {
 
-  if(props.loading) {
-    return (<p>Loading...</p>)
-  }
-
   return (
   <Fragment>
     {[...props.course_types_map.entries()].map(([course_type,val]) => {
@@ -28,7 +24,6 @@ const CourseTypes = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    loading: state.finder.loading,
     course_types_map: state.finder.course_types_map
   };
 };

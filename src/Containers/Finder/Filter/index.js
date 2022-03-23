@@ -29,14 +29,14 @@ const Filter = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    semesters_list: state.finder.semesters_list,
-    selected_semester: state.finder.selected_semester
+    // semesters_list: state.finder.semesters_list,
+    // selected_semester: state.finder.selected_semester
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onInitFetch: () => dispatch(actions.fetchInit()), 
+    // onInitFetch: () => dispatch(actions.fetchInit()), 
   };
 };
 

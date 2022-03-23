@@ -8,9 +8,6 @@ import Switch from '@mui/material/Switch';
 
 const Branch = (props) => {
 
-  if(props.loading) {
-    return (<p>Loading...</p>)
-  }
   return (
     <Fragment>
       {[...props.branch_map.entries()].map(([branch,include]) => {
@@ -21,7 +18,6 @@ const Branch = (props) => {
               checked={include}
               onChange={(event) => props.onUpdate(branch,event.target.checked)}
             />
-            {/* <ThreeStateSwitch name={branch} onChange={(val) => props.onUpdate(branch,val)} value={props.branch_map.get(branch)}/> */}
           </div>
         )
       })}
@@ -31,7 +27,6 @@ const Branch = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    loading: state.finder.loading,
     branch_map: state.finder.branch_map,
   };
 };

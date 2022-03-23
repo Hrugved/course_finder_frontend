@@ -5,11 +5,6 @@ import Slider from '@mui/material/Slider';
 import styles from './styles.module.css'
 
 const Credits = (props) => {
-  // const [value, setValue] = React.useState([0, 20]);
-
-  // const handleChange = (event, newValue) => {
-  //   setValue(newValue);
-  // };
 
   return (
     <div className={styles.wrapper}>
