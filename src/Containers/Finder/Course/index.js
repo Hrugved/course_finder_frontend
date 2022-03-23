@@ -9,7 +9,7 @@ import { threeStateSwitch } from "constants";
 
 const Course = (props) => {
 
-  const {selected_semester,clash,course_types_map,branch_map,credits,sched_bitmap,onUpdate} = props;
+  const {selected_semester,clash,course_types_map,branch_map,selected_credits,sched_bitmap,onUpdate} = props;
 
   useEffect(() => {
     const filter = {
@@ -20,15 +20,15 @@ const Course = (props) => {
         exclude: [...course_types_map.entries()].filter(([type,val]) => val===threeStateSwitch.exclude).map(([type,val]) => type),
       },
       branch_list: [...branch_map.entries()].filter(([branch,val]) => val).map(([branch,val]) => branch),
-      credits: {
-        min: credits[0],
-        max: credits[1],
+      selected_credits: {
+        min: selected_credits[0],
+        max: selected_credits[1],
       },
       sched_bitmap: sched_bitmap
     }
     console.log('constructed filter:'+JSON.stringify(filter));
     onUpdate(filter);
-  }, [selected_semester,clash,course_types_map,branch_map,credits,sched_bitmap,onUpdate]);
+  }, [selected_semester,clash,course_types_map,branch_map,selected_credits,sched_bitmap,onUpdate]);
 
   if(props.loading) {
     return (<p>Loading...</p>)
@@ -52,7 +52,7 @@ const mapStateToProps = (state) => {
     clash: state.finder.clash,
     course_types_map: state.finder.course_types_map,
     branch_map: state.finder.branch_map,
-    credits: state.finder.credits,
+    selected_credits: state.finder.selected_credits,
     sched_bitmap: state.finder.sched_bitmap,
   };
 };

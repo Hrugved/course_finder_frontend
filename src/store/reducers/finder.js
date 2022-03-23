@@ -10,12 +10,13 @@ const initialState = {
     sched_bitmap: "",
     course_types_map: new Map(),
     branch_map: new Map(),
-    credits: [0,20],
+    selected_credits: [0,14],
+    credits: [0,14],
     loading: false,
     clash: false,
     filtered_courses_list: [],  // [[id,clash]]
     searched_course_list: [], // search bar
-    init_fetched: false
+    init_fetched: false,
 };
 
 const setSemesters = ( state, action ) => {
@@ -39,7 +40,9 @@ const setInitData = ( state, {data} ) => {
         all_courses_map: new Map(data.all_courses.map(i => [i.course_id,i])),
         course_types_map: new Map(data.course_types_list.map(name => [name,threeStateSwitch.neutral])),
         branch_map: new Map(data.branch_list.sort().map(name => [name,true])),
-        init_fetched: true
+        init_fetched: true,
+        credits: [data.credits.min,data.credits.max],
+        selected_credits: [data.credits.min,data.credits.max],
     }
     // console.log('setInitData all_courses_map:'+JSON.stringify([...updatedState.all_courses_map.entries()]));
     console.log('setInitData all_courses_map:'+updatedState.all_courses_map.size);
@@ -67,8 +70,8 @@ const updateBranch = ( state, {branch,include} ) => {
     return updateObject( state, updatedState );
 };
 
-const updateCredits = (state,{credits}) => {
-    return updateObject( state, {credits: credits} );
+const updateCredits = (state,{selected_credits}) => {
+    return updateObject( state, {selected_credits: selected_credits} );
 }
 
 const updateClash = (state,{clash}) => {

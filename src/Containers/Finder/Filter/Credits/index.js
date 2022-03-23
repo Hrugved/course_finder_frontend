@@ -10,16 +10,16 @@ const Credits = (props) => {
     <div className={styles.wrapper}>
       <p className={styles.p_credits}>Credits</p>
       <div className={styles.slider_wrapper} >
-        <p>{props.credits[0]}</p>
+        <p>{props.selected_credits[0]}</p>
         <Slider
-          min={0}
-          max={20}
-          value={props.credits}
-          onChange={(e,credits) => props.onUpdate(credits)}
+          min={props.credits[0]}
+          max={props.credits[1]}
+          value={props.selected_credits}
+          onChange={(e,selected_credits) => props.onUpdate(selected_credits)}
           valueLabelDisplay="auto"
           className={styles.slider}
         />
-        <p>{props.credits[1]}</p>
+        <p>{props.selected_credits[1]}</p>
       </div>
     </div>
   );
@@ -29,13 +29,14 @@ const Credits = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    credits: state.finder.credits,
+    selected_credits: state.finder.selected_credits,
+    credits: state.finder.credits
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onUpdate: (credits) => dispatch(actions.onUpdateCredits(credits)), 
+    onUpdate: (selected_credits) => dispatch(actions.onUpdateCredits(selected_credits)), 
   };
 };
 

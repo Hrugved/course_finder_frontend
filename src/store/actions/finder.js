@@ -76,11 +76,11 @@ export const onUpdateFilterBranch = ( branch, include ) => {
     };
 };
 
-export const onUpdateCredits = ( credits ) => {
-    console.log('onUpdateCredits:'+credits);
+export const onUpdateCredits = ( selected_credits ) => {
+    console.log('onUpdateCredits:'+selected_credits);
     return {
         type: actionTypes.UPDATE_CREDITS,
-        credits
+        selected_credits
     };
 };
 
