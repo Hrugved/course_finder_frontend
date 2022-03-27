@@ -8,20 +8,34 @@ import Switch from '@mui/material/Switch';
 
 const Branch = (props) => {
 
+  const handleClear = () => {
+    [...props.branch_map.keys()].map(name => props.onUpdate(name,false));
+  }
+
+  const handleSet = () => {
+    [...props.branch_map.keys()].map(name => props.onUpdate(name,true));
+  }
+
   return (
-    <Fragment>
+    <div>
+      <div className={styles.controls}>
+        <div className={styles.control1} onClick={handleSet}>SET</div>
+        <div className={styles.control2} onClick={handleClear}>CLEAR</div>
+      </div>
       {[...props.branch_map.entries()].map(([branch,include]) => {
         return (
-          <div key={branch} className={styles.wrapper}>
-            <p className={styles.name}>{branch}</p>
-            <Switch
-              checked={include}
-              onChange={(event) => props.onUpdate(branch,event.target.checked)}
-            />
+          <div>
+            <div key={branch} className={styles.list}>
+              <p className={styles.name}>{branch}</p>
+              <Switch
+                checked={include}
+                onChange={(event) => props.onUpdate(branch,event.target.checked)}
+              />
+            </div>
           </div>
         )
       })}
-    </Fragment>
+    </div>
   );
 };
 

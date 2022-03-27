@@ -8,8 +8,15 @@ import { threeStateSwitch } from "constants";
 
 const CourseTypes = (props) => {
 
+  const handleClear = () => {
+    [...props.course_types_map.keys()].map(name => props.onUpdate(name,threeStateSwitch.neutral));
+  }
+
   return (
-  <Fragment>
+    <div>
+      <div className={styles.controls}>
+        <div className={styles.control1} onClick={handleClear}>CLEAR</div>
+      </div>
     {[...props.course_types_map.entries()].map(([course_type,val]) => {
       return (
         <div key={course_type} className={styles.wrapper}>
@@ -18,7 +25,7 @@ const CourseTypes = (props) => {
         </div>
       )
     })}
-  </Fragment>
+    </div>
   );
 };
 

@@ -35,14 +35,14 @@ const Course = (props) => {
   }
 
   return (
-      <div className={styles.wrapper}>
-        <div className={styles.SearchBox}>
-          {/* <Search/> */}
-        </div>  
+      // <div className={styles.wrapper}>
+        /* <div className={styles.SearchBox}>
+          <Search/>
+        </div>   */
         <div className={styles.ViewBox}>
           <View/>
         </div>  
-      </div>
+      // </div>
   );
 };
 

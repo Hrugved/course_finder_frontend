@@ -14,11 +14,11 @@
   background-color: var(--cp-1-t);
   padding: 1rem 2rem;
   border-radius: 10px;
-  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+  /* box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px; */
 }
 
 .courseFilterBox > *, .branchFilterBox > * {
-  width: 80%;
+  /* width: 80%; */
   min-width: 200px;
   padding: 0;
 }

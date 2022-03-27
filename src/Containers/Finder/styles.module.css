@@ -7,6 +7,9 @@
   min-height: 0;
   min-width: 0; 
   padding: 1rem;
+  background: #2980B9;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #FFFFFF, #6DD5FA, #2980B9);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #FFFFFF, #6DD5FA, #2980B9); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 .row1 {
@@ -34,15 +37,16 @@
 }
 
 .row1_col1 {
-  background-color: var(--cp-5);
+  /* background-color: var(--cp-5); */
   /* height: 100%; */
   padding: 1rem;
 }
 
 .row1_col2 {
-  background-color: var(--cp-4);
+  /* background-color: var(--cp-4); */
+  overflow: hidden;
 }
 
 .row1_col3 {
-  background-color: var(--cp-3);
+  /* background-color: var(--cp-3); */
 }

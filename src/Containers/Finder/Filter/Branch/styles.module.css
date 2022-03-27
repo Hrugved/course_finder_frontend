@@ -9,6 +9,9 @@
 } */
 
 .wrapper {
+}
+
+.list {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -19,4 +22,34 @@
   padding: 0;
   margin: 0;
   font-weight: bold;
+}
+
+.controls {
+  width: 100%;
+  display: grid;
+  grid-template: 1fr / 1fr 1fr ;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 1rem;
+}
+
+.control1 {
+  grid-area: 1 / 1 / 2 / 2;
+}
+
+.control2 {
+  grid-area: 1 / 2 / 2 / 3;
+}
+
+.control1, .control2 {
+  padding: 1rem;
+  background-color: var(--cp-5-t);
+  margin: .2rem;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.control1:hover, .control2:hover {
+  background-color: var(--cp-5);
 }

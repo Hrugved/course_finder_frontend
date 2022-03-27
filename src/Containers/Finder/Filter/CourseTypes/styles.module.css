@@ -21,3 +21,16 @@
   margin: 0;
   font-weight: bold;
 }
+
+.control1 {
+  padding: 1rem;
+  background-color: var(--cp-5-t);
+  margin: .2rem;
+  cursor: pointer;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.control1:hover {
+  background-color: var(--cp-5);
+}
