@@ -9,7 +9,12 @@ import { threeStateSwitch } from "constants";
 
 const Course = (props) => {
 
-  const {selected_semester,clash,course_types_map,branch_map,selected_credits,sched_bitmap,onUpdate} = props;
+  const {selected_semester,clash,course_types_map,branch_map,selected_credits,sched_bitmap,onUpdate,selected_courses_list,updateSchedBitmap} = props;
+
+  useEffect(() => {
+    console.log('useEffect:'+selected_courses_list);
+    updateSchedBitmap(selected_courses_list)
+  },[selected_courses_list,updateSchedBitmap])
 
   useEffect(() => {
     const filter = {
@@ -24,7 +29,7 @@ const Course = (props) => {
         min: selected_credits[0],
         max: selected_credits[1],
       },
-      sched_bitmap: sched_bitmap
+      sched_bitmap: sched_bitmap 
     }
     console.log('constructed filter:'+JSON.stringify(filter));
     onUpdate(filter);
@@ -54,12 +59,14 @@ const mapStateToProps = (state) => {
     branch_map: state.finder.branch_map,
     selected_credits: state.finder.selected_credits,
     sched_bitmap: state.finder.sched_bitmap,
+    selected_courses_list: state.finder.selected_courses_list
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     onUpdate: (filter) => dispatch(actions.fetchFilteredCourseList(filter)), 
+    updateSchedBitmap: (selected_courses_list) => dispatch(actions.updateSchedBitmap(selected_courses_list)), 
   };
 };
 

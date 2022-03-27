@@ -24,8 +24,8 @@ const Branch = (props) => {
       </div>
       {[...props.branch_map.entries()].map(([branch,include]) => {
         return (
-          <div>
-            <div key={branch} className={styles.list}>
+          <div key={branch}>
+            <div className={styles.list}>
               <p className={styles.name}>{branch}</p>
               <Switch
                 checked={include}

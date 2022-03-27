@@ -9,7 +9,8 @@ export {
     fetchFilteredCourseList,
     onSelectCourse,
     onAddSelectedCourse,
-    onRemoveSelectedCourse
+    onRemoveSelectedCourse,
+    updateSchedBitmap
 } from './finder';
 // export {
 //     purchaseBurger,

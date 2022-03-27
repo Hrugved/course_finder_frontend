@@ -28,7 +28,6 @@ export const fetchSemesters = () => {
                dispatch(setLoading(false))
             } )
             .catch( error => {
-                // dispatch(fetchIngredientsFailed());
                 console.log('Error fetching semesters!', error);
             } );
     };
@@ -54,7 +53,6 @@ export const fetchInit = (semester) => {
                dispatch(setInit(response.data));
             } )
             .catch( error => {
-                // dispatch(fetchIngredientsFailed());
                 console.log('Error fetching init!', error);
             } );
     };
@@ -117,7 +115,6 @@ export const fetchFilteredCourseList = (filter) => {
                dispatch(setLoading(false))
             } )
             .catch( error => {
-                // dispatch(fetchIngredientsFailed());
                 console.log('Error fetching filter!', error);
             } );
     };
@@ -143,3 +140,26 @@ export const onRemoveSelectedCourse = ( courseId ) => {
         course_id: courseId
     };
 };
+
+const setSchedBitmap = ( sched_bitmap ) => {
+    console.log('setSchedBitmap'+sched_bitmap);
+    return {
+        type: actionTypes.SET_SCHED_BITMAP,
+        sched_bitmap: sched_bitmap
+    };
+};
+
+export const updateSchedBitmap = (selected_course_ids) => { 
+    console.log('updateSchedBitmap:'+selected_course_ids);
+    return dispatch => {
+        axios.post('/sched_bitmap', {selected_course_ids:selected_course_ids})
+            .then( response => {
+                console.log('response.data'+response.data);
+               dispatch(setSchedBitmap(response.data));
+            } )
+            .catch( error => {
+                console.log('Error fetching filter!', error);
+            } );
+    };
+}
+

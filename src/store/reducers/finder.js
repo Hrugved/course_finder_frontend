@@ -47,6 +47,10 @@ const setInitData = ( state, {data} ) => {
     }
     // console.log('setInitData all_courses_map:'+JSON.stringify([...updatedState.all_courses_map.entries()]));
     console.log('setInitData all_courses_map:'+updatedState.all_courses_map.size);
+    console.log('58:'+updatedState.all_courses_map.get(58).course_name);
+    console.log('58:'+updatedState.all_courses_map.get(58).sched_bitmap);
+    console.log('209:'+updatedState.all_courses_map.get(209).course_name);
+    console.log('209:'+updatedState.all_courses_map.get(209).sched_bitmap);
     // console.log('setInitData, filtered_courses_list:'+JSON.stringify(updatedState.filtered_courses_list));
     // console.log('setInitData, filtered_courses_list:'+updatedState.filtered_courses_list.length);
     return updateObject( state, updatedState );
@@ -90,13 +94,19 @@ const selectCourse = (state,{course_id}) => {
 }
 
 const addSelectedCourse = (state,{course_id}) => {
-    return updateObject( state, {selected_courses_list: [...state.selected_courses_list,course_id]} );
+    let list = [...state.selected_courses_list,course_id]
+    return updateObject( state, {selected_courses_list: list} );
 }
 
 const removeSelectedCourse = (state,{course_id}) => {
     let list = [...state.selected_courses_list]
     list.splice(list.indexOf(course_id),1)
     return updateObject( state, {selected_courses_list: list} );
+}
+
+const setSchedBitmap = (state,{sched_bitmap}) => {
+    console.log('setSchedBitmap:'+sched_bitmap);
+    return updateObject( state, {sched_bitmap: sched_bitmap} );
 }
 
 const reducer = ( state = initialState, action ) => {
@@ -113,6 +123,7 @@ const reducer = ( state = initialState, action ) => {
         case actionTypes.SET_SELECTED_COURSE: return selectCourse(state,action);
         case actionTypes.ADD_SELECTED_COURSE: return addSelectedCourse(state,action);
         case actionTypes.REMOVE_SELECTED_COURSE: return removeSelectedCourse(state,action);
+        case actionTypes.SET_SCHED_BITMAP: return setSchedBitmap(state,action);
         default: return state;
     }
 };

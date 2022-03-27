@@ -1,3 +1,4 @@
+import axios from 'axios-server';
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import * as actions from "store/actions/";
@@ -10,21 +11,46 @@ const Info = (props) => {
   // }
   const [course,set_course] = useState(null)
   const [isSelected,setIsSelected] = useState(false)
+  const [clashes,setClashes] = useState([])
 
   const {selected_course,courses_map,selected_courses_list} = props
   useEffect(() => {
     set_course(courses_map.get(selected_course))
-    setIsSelected((selected_courses_list.indexOf(selected_course) > -1))
+    const list = [...selected_courses_list]
+    if(selected_courses_list.indexOf(selected_course) > -1) {
+      setIsSelected(true)
+      list.splice(selected_courses_list.indexOf(selected_course),1)
+    } else setIsSelected(false)
+    axios.post('/find-clashes', {
+      course_id:selected_course,
+      course_ids:list}
+    )
+      .then( response => {
+          console.log('find-clashes response.data:'+response.data);
+          setClashes([...response.data.map(id => courses_map.get(id).course_name)])
+      } )
+      .catch( error => {
+          console.log('find-clashes Error fetching filter!', error);
+      } );
   },[selected_course,courses_map,selected_courses_list])
 
   if(course==null) {
     return <p>no course selected</p>
   }
+
+  let clashStyle = styles.item10_key
+  if (clashes.length>0) {
+    clashStyle = styles.item10_key_clash
+  }
+
   let btn=null
   if(isSelected) {
     btn = ( <div className={styles.remove} onClick={() => props.onRemove(course.course_id)}>Remove</div> )
   } else {
-    btn = ( <div className={styles.add} onClick={() => props.onAdd(course.course_id)}>Add</div> )
+    if(clashes.length>0) {
+      btn = ( <div className={styles.remove} onClick={() => props.onAdd(course.course_id)}>Add</div> )
+    }
+    else btn = ( <div className={styles.add} onClick={() => props.onAdd(course.course_id)}>Add</div> )
   }
 
   return (
@@ -51,6 +77,10 @@ const Info = (props) => {
             <div className={[styles.item9_key,styles.item_key].join(' ')}>Instructors</div>
             <div className={[styles.item9_val,styles.item_val].join(' ')}>
               {course.inst_names.split(',').map((name,i) => <p key={name} className={styles.inst}><a href={`mailto:${course.inst_emails.split(',')[i]}`}>{name}</a></p>)}
+            </div>
+            <div className={[clashStyle,styles.item_key].join(' ')}>Clashes</div>
+            <div className={[styles.item10_val,styles.item_val].join(' ')}>
+              {clashes.map(name => <p key={name} className={styles.clashCourse}>{name}</p>)}
             </div>
           </div>
         </div>  

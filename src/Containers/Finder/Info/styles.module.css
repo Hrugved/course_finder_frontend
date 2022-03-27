@@ -16,7 +16,7 @@
 
 .GridBox {
   display: grid;
-  grid-template: repeat(8,max-content) / max-content 1fr;
+  grid-template: repeat(9,max-content) / max-content 1fr;
   grid-gap: 1rem;
 } 
 
@@ -96,7 +96,22 @@
 .item9_val {
   grid-area: 9 / 2 / 10 / 3;
 }
-
+.item10_key {
+  grid-area: 10 / 1 / 11 / 2;
+}
+.item10_key_clash {
+  grid-area: 10 / 1 / 11 / 2;
+  background-color: rgba(255,0,0,.5) !important;
+}
+.item10_val {
+  grid-area: 10 / 2 / 11 / 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.item10_val > p {
+  margin: 2px;
+}
 
 .add {
   background-color: rgba(0,255,0,.5);

@@ -19,6 +19,18 @@
   overflow-y: auto;
 } 
 
+.credits {
+  width: 100%;
+  padding: 1rem;
+  padding-left: 2.5rem;
+  padding-top: 0;
+  font-size: 1.5rem;
+  /* justify-content: center; */
+}
+.credits > p {
+  margin: 0;
+}
+
 .item {
   display: grid;
   grid-template: 1fr / 1fr max-content max-content;
@@ -28,15 +40,26 @@
   padding-bottom: 1rem;
 }
 
-.name {
+.name{
   grid-area: 1/1/2/2;
-  background-color: var(--cp-5-t);
+  background-color: rgba(0,255,0,.5);
   padding: 1rem;
   border-radius: 10px;
   cursor: pointer;
 }
 .name:hover {
-  background-color: var(--cp-5);
+  background-color: rgba(0,255,0,1);
+}
+
+.name_clash{
+  grid-area: 1/1/2/2;
+  background-color: rgba(255,0,0,.5);
+  padding: 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.name_clash:hover {
+  background-color: rgba(255,0,0,1);
 }
 
 .credit {
