@@ -97,3 +97,28 @@
   grid-area: 9 / 2 / 10 / 3;
 }
 
+
+.add {
+  background-color: rgba(0,255,0,.5);
+  padding: 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  /* display: flex; */
+  text-align: center;
+  font-weight: bold;
+}
+.add:hover {
+  background-color: rgba(0,255,0,1);
+}
+
+.remove {
+  background-color: rgba(255,0,0,.5);
+  padding: 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  text-align: center;
+  font-weight: bold;
+}
+.remove:hover {
+  background-color: rgba(255,0,0,1);
+}

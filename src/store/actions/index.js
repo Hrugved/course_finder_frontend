@@ -7,7 +7,9 @@ export {
     onUpdateCredits,
     onUpdateClash,
     fetchFilteredCourseList,
-    onSelectCourse
+    onSelectCourse,
+    onAddSelectedCourse,
+    onRemoveSelectedCourse
 } from './finder';
 // export {
 //     purchaseBurger,

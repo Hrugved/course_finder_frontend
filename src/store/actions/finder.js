@@ -129,3 +129,17 @@ export const onSelectCourse = ( courseId ) => {
         course_id: courseId
     };
 };
+
+export const onAddSelectedCourse = ( courseId ) => {
+    return {
+        type: actionTypes.ADD_SELECTED_COURSE,
+        course_id: courseId
+    };
+};
+
+export const onRemoveSelectedCourse = ( courseId ) => {
+    return {
+        type: actionTypes.REMOVE_SELECTED_COURSE,
+        course_id: courseId
+    };
+};

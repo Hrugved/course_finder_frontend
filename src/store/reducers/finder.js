@@ -89,6 +89,16 @@ const selectCourse = (state,{course_id}) => {
     return updateObject( state, {selected_course: course_id} );
 }
 
+const addSelectedCourse = (state,{course_id}) => {
+    return updateObject( state, {selected_courses_list: [...state.selected_courses_list,course_id]} );
+}
+
+const removeSelectedCourse = (state,{course_id}) => {
+    let list = [...state.selected_courses_list]
+    list.splice(list.indexOf(course_id),1)
+    return updateObject( state, {selected_courses_list: list} );
+}
+
 const reducer = ( state = initialState, action ) => {
     switch ( action.type ) {
         case actionTypes.SET_SEMESTERS: return setSemesters( state, action );
@@ -101,6 +111,8 @@ const reducer = ( state = initialState, action ) => {
         case actionTypes.UPDATE_CLASH: return updateClash(state,action);
         case actionTypes.SET_FILTERED_COURSE_LIST: return updateFilteredCourseList(state,action);
         case actionTypes.SET_SELECTED_COURSE: return selectCourse(state,action);
+        case actionTypes.ADD_SELECTED_COURSE: return addSelectedCourse(state,action);
+        case actionTypes.REMOVE_SELECTED_COURSE: return removeSelectedCourse(state,action);
         default: return state;
     }
 };
