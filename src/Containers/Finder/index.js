@@ -5,6 +5,7 @@ import styles from "./styles.module.css";
 import Filter from './Filter'
 import Course from './Course'
 import { useNavigate } from "react-router-dom";
+import Info from "./Info";
 
 const Finder = (props) => {
   const navigate = useNavigate();
@@ -31,9 +32,7 @@ const Finder = (props) => {
           <Course />
         </div>
         <div className={styles.row1_col3}>
-          <div className={styles.detailBox}>
-            
-          </div>
+          <Info />
         </div>
       </div>
       <div className={styles.row2}>

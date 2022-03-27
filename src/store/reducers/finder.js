@@ -7,6 +7,7 @@ const initialState = {
     selected_semester: "",
     all_courses_map: {},
     selected_courses_list: [],
+    selected_course: null,
     sched_bitmap: "",
     course_types_map: new Map(),
     branch_map: new Map(),
@@ -84,6 +85,10 @@ const updateFilteredCourseList = (state,{data}) => {
     return updateObject( state, {filtered_courses_list: data} );
 }
 
+const selectCourse = (state,{course_id}) => {
+    return updateObject( state, {selected_course: course_id} );
+}
+
 const reducer = ( state = initialState, action ) => {
     switch ( action.type ) {
         case actionTypes.SET_SEMESTERS: return setSemesters( state, action );
@@ -95,6 +100,7 @@ const reducer = ( state = initialState, action ) => {
         case actionTypes.UPDATE_CREDITS: return updateCredits(state,action);
         case actionTypes.UPDATE_CLASH: return updateClash(state,action);
         case actionTypes.SET_FILTERED_COURSE_LIST: return updateFilteredCourseList(state,action);
+        case actionTypes.SET_SELECTED_COURSE: return selectCourse(state,action);
         default: return state;
     }
 };

@@ -13,7 +13,7 @@ const Card = (props) => {
   wrapperClass += " " + (props.clash ? styles.clash : styles.noClash);
 
   return (
-    <div className={styles.button}>
+    <div className={styles.button} onClick={() => props.onClick(props.courseId)}>
       <div className={wrapperClass}>
         <p className={styles.name}>{course.course_name}</p>
         <p className={styles.credits}>{course.credits}</p>
@@ -26,12 +26,14 @@ const Card = (props) => {
 const mapStateToProps = (state) => {
   return {
     courses_map: state.finder.all_courses_map,
+    selected_course: state.finder.selected_course
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onUpdate: (Clash) => dispatch(actions.onUpdateClash(Clash)), 
+    onUpdate: (Clash) => dispatch(actions.onUpdateClash(Clash)),
+    onClick: (courseId) => dispatch(actions.onSelectCourse(courseId)) 
   };
 };
 

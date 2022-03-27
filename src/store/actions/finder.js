@@ -122,3 +122,10 @@ export const fetchFilteredCourseList = (filter) => {
             } );
     };
 }
+
+export const onSelectCourse = ( courseId ) => {
+    return {
+        type: actionTypes.SET_SELECTED_COURSE,
+        course_id: courseId
+    };
+};

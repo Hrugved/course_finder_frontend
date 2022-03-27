@@ -20,7 +20,7 @@ const Course = (props) => {
         exclude: [...course_types_map.entries()].filter(([type,val]) => val===threeStateSwitch.exclude).map(([type,val]) => type),
       },
       branch_list: [...branch_map.entries()].filter(([branch,val]) => val).map(([branch,val]) => branch),
-      selected_credits: {
+      credits: {
         min: selected_credits[0],
         max: selected_credits[1],
       },

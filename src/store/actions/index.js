@@ -6,7 +6,8 @@ export {
     onUpdateFilterBranch,
     onUpdateCredits,
     onUpdateClash,
-    fetchFilteredCourseList
+    fetchFilteredCourseList,
+    onSelectCourse
 } from './finder';
 // export {
 //     purchaseBurger,
