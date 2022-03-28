@@ -45,14 +45,6 @@ const setInitData = ( state, {data} ) => {
         credits: [data.credits.min,data.credits.max],
         selected_credits: [data.credits.min,data.credits.max],
     }
-    // console.log('setInitData all_courses_map:'+JSON.stringify([...updatedState.all_courses_map.entries()]));
-    console.log('setInitData all_courses_map:'+updatedState.all_courses_map.size);
-    console.log('58:'+updatedState.all_courses_map.get(58).course_name);
-    console.log('58:'+updatedState.all_courses_map.get(58).sched_bitmap);
-    console.log('209:'+updatedState.all_courses_map.get(209).course_name);
-    console.log('209:'+updatedState.all_courses_map.get(209).sched_bitmap);
-    // console.log('setInitData, filtered_courses_list:'+JSON.stringify(updatedState.filtered_courses_list));
-    // console.log('setInitData, filtered_courses_list:'+updatedState.filtered_courses_list.length);
     return updateObject( state, updatedState );
 };
 
@@ -80,12 +72,10 @@ const updateCredits = (state,{selected_credits}) => {
 }
 
 const updateClash = (state,{clash}) => {
-    console.log(clash);
     return updateObject( state, {clash: clash} );
 }
 
 const updateFilteredCourseList = (state,{data}) => {
-    console.log('updateFilteredCourseList:',data.length);
     return updateObject( state, {filtered_courses_list: data} );
 }
 
@@ -105,7 +95,6 @@ const removeSelectedCourse = (state,{course_id}) => {
 }
 
 const setSchedBitmap = (state,{sched_bitmap}) => {
-    console.log('setSchedBitmap:'+sched_bitmap);
     return updateObject( state, {sched_bitmap: sched_bitmap} );
 }
 

@@ -11,12 +11,11 @@ const View = (props) => {
     return (<p>Loading...</p>)
   }
 
-  console.log('View:'+props.filtered_course.length);
-
   return (
     <div className={styles.wrapper}>
-      {props.filtered_course.map(([id,clash]) => {
-        // console.log("id:"+id+" clash:" + clash);
+      {props.filtered_course
+      .filter(([id,clash]) => !props.selected_courses_list.includes(id))
+      .map(([id,clash]) => {
         return(<Card key={id} courseId={id} clash={clash} />)
 })}
     </div>
@@ -27,6 +26,7 @@ const mapStateToProps = (state) => {
   return {
     loading: state.finder.loading,
     filtered_course: state.finder.filtered_courses_list,
+    selected_courses_list: state.finder.selected_courses_list
   };
 };
 

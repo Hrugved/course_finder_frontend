@@ -15,16 +15,21 @@ const Init = (props) => {
     props.onInitFetch(props.selected_semester);
     navigate("/finder");
   }
+  const openProfile = () => {
+    const newWindow = window.open("https://www.linkedin.com/in/hrugved-wath-4b3172186/", '_blank', 'noopener,noreferrer')
+    if (newWindow) newWindow.opener = null
+  }
 
   return (
     <div className={styles.root}>
       <div className={styles.col1}>
         <div className={styles.col1_name_div}>
           <p className={styles.col1_name_1}>Course</p>
-          <p className={styles.col1_name_2}>Finder</p>
+          <p className={styles.col1_name_2}>Navigator</p>
         </div>
-        <div>
-          <p>Credits</p>
+        <div className={styles.creditsBox}>
+          <p className={styles.created}>Created by</p>
+          <p className={styles.name} onClick={() => openProfile()}>Hrugved</p>
         </div>
       </div>
       <div className={styles.col2}>
