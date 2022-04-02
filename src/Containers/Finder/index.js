@@ -13,7 +13,7 @@ const Finder = (props) => {
 
   const {selected_semester} = props
   useEffect(() => {
-    console.log('selected_semester:'+selected_semester);
+    //console.log('selected_semester:'+selected_semester);
     if(selected_semester==="") {
       navigate("/");
     }

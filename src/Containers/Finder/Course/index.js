@@ -12,7 +12,7 @@ const Course = (props) => {
   const {selected_semester,clash,course_types_map,branch_map,selected_credits,sched_bitmap,onUpdate,selected_courses_list,updateSchedBitmap} = props;
 
   useEffect(() => {
-    console.log('useEffect:'+selected_courses_list);
+    //console.log('useEffect:'+selected_courses_list);
     updateSchedBitmap(selected_courses_list)
   },[selected_courses_list,updateSchedBitmap])
 
@@ -31,7 +31,7 @@ const Course = (props) => {
       },
       sched_bitmap: sched_bitmap 
     }
-    console.log('constructed filter:'+JSON.stringify(filter));
+    //console.log('constructed filter:'+JSON.stringify(filter));
     onUpdate(filter);
   }, [selected_semester,clash,course_types_map,branch_map,selected_credits,sched_bitmap,onUpdate]);
 

@@ -6,7 +6,7 @@ import styles from './styles.module.css'
 
 const Card = (props) => {
  
-  // console.log(props);
+  // //console.log(props);
   // const bgColor = props.clash ?  'rgba(255,0,0,.5)' : 'rgba(127,255,0,.5)'
   const course = props.courses_map.get(props.courseId)
   let wrapperClass = styles.wrapper;

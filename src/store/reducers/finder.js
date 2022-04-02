@@ -52,7 +52,7 @@ const updateCourseType = ( state, {course_type,val} ) => {
     const updatedState = {
         course_types_map: new Map(state.course_types_map).set(course_type,val)
     }
-    console.log(updatedState);
+    //console.log(updatedState);
     return updateObject( state, updatedState );
 };
 

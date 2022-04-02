@@ -9,7 +9,7 @@ import { threeStateSwitch } from "constants";
 // TODO: Add icon in <i> tags
 
 const ThreeStateSwitch = (props) => {
-// console.log(props);
+// //console.log(props);
   return (
     <div className={styles.wrapper}>
       <label className={styles.btn_container}>

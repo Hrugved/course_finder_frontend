@@ -26,11 +26,11 @@ const Info = (props) => {
       course_ids:list}
     )
       .then( response => {
-          console.log('find-clashes response.data:'+response.data);
+          //console.log('find-clashes response.data:'+response.data);
           setClashes([...response.data.map(id => courses_map.get(id).course_name)])
       } )
       .catch( error => {
-          console.log('find-clashes Error fetching filter!', error);
+          //console.log('find-clashes Error fetching filter!', error);
       } );
   },[selected_course,courses_map,selected_courses_list])
 

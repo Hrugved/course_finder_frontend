@@ -3,7 +3,7 @@ import axios from 'axios-server';
 import { threeStateSwitch } from 'constants';
 
 export const selectSemester = ( semester ) => {
-    console.log('selectSemester: '+semester);
+    //console.log('selectSemester: '+semester);
     return {
         type: actionTypes.SELECT_SEMESTER,
         semester: semester
@@ -11,7 +11,7 @@ export const selectSemester = ( semester ) => {
 };
 
 const setSemesters = ( semesters ) => {
-    console.log('setSemesters: '+semesters);
+    //console.log('setSemesters: '+semesters);
     return {
         type: actionTypes.SET_SEMESTERS,
         semesters: semesters
@@ -19,7 +19,7 @@ const setSemesters = ( semesters ) => {
 };
 
 export const fetchSemesters = () => {
-    console.log('fetchSemesters');
+    //console.log('fetchSemesters');
     return dispatch => {
         dispatch( setLoading(true) );
         axios.get( '/semesters' )
@@ -28,13 +28,13 @@ export const fetchSemesters = () => {
                dispatch(setLoading(false))
             } )
             .catch( error => {
-                console.log('Error fetching semesters!', error);
+                //console.log('Error fetching semesters!', error);
             } );
     };
 };
 
 const setInit = ( data ) => {
-    console.log('setInit: '+data);
+    //console.log('setInit: '+data);
     return {
         type: actionTypes.SET_INIT_DATA,
         data: data
@@ -42,7 +42,7 @@ const setInit = ( data ) => {
 };
 
 export const fetchInit = (semester) => {
-    console.log('fetchInit:'+semester);
+    //console.log('fetchInit:'+semester);
     return dispatch => {
         axios.get('/init', {
             params: {
@@ -53,7 +53,7 @@ export const fetchInit = (semester) => {
                dispatch(setInit(response.data));
             } )
             .catch( error => {
-                console.log('Error fetching init!', error);
+                //console.log('Error fetching init!', error);
             } );
     };
 };
@@ -75,7 +75,7 @@ export const onUpdateFilterBranch = ( branch, include ) => {
 };
 
 export const onUpdateCredits = ( selected_credits ) => {
-    console.log('onUpdateCredits:'+selected_credits);
+    //console.log('onUpdateCredits:'+selected_credits);
     return {
         type: actionTypes.UPDATE_CREDITS,
         selected_credits
@@ -97,7 +97,7 @@ const setLoading = ( val ) => {
 };
 
 const setFilteredCourseList = ( data ) => {
-    // console.log('setFilteredCourseList: '+JSON.stringify(data));
+    // //console.log('setFilteredCourseList: '+JSON.stringify(data));
     
     return {
         type: actionTypes.SET_FILTERED_COURSE_LIST,
@@ -106,7 +106,7 @@ const setFilteredCourseList = ( data ) => {
 };
 
 export const fetchFilteredCourseList = (filter) => {
-    console.log('fetchFilteredCourseList');
+    //console.log('fetchFilteredCourseList');
     return dispatch => {
         dispatch( setLoading(true) );
         axios.post('/filter', {filter:filter})
@@ -115,7 +115,7 @@ export const fetchFilteredCourseList = (filter) => {
                dispatch(setLoading(false))
             } )
             .catch( error => {
-                console.log('Error fetching filter!', error);
+                //console.log('Error fetching filter!', error);
             } );
     };
 }
@@ -142,7 +142,7 @@ export const onRemoveSelectedCourse = ( courseId ) => {
 };
 
 const setSchedBitmap = ( sched_bitmap ) => {
-    console.log('setSchedBitmap'+sched_bitmap);
+    //console.log('setSchedBitmap'+sched_bitmap);
     return {
         type: actionTypes.SET_SCHED_BITMAP,
         sched_bitmap: sched_bitmap
@@ -150,15 +150,15 @@ const setSchedBitmap = ( sched_bitmap ) => {
 };
 
 export const updateSchedBitmap = (selected_course_ids) => { 
-    console.log('updateSchedBitmap:'+selected_course_ids);
+    //console.log('updateSchedBitmap:'+selected_course_ids);
     return dispatch => {
         axios.post('/sched_bitmap', {selected_course_ids:selected_course_ids})
             .then( response => {
-                console.log('response.data'+response.data);
+                //console.log('response.data'+response.data);
                dispatch(setSchedBitmap(response.data));
             } )
             .catch( error => {
-                console.log('Error fetching filter!', error);
+                //console.log('Error fetching filter!', error);
             } );
     };
 }

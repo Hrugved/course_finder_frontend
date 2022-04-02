@@ -17,21 +17,21 @@ const Selected = (props) => {
   useEffect(() => {
     Promise.all(selected_courses_list.map(id => {
       const {course_name,course_name_extended,credits} = courses_map.get(id);
-      console.log(course_name);
+      //console.log(course_name);
       const list = [...selected_courses_list]
       if(selected_courses_list.indexOf(id) > -1) {
         list.splice(selected_courses_list.indexOf(id),1)
       }
-      console.log(list);
+      //console.log(list);
       let clash = false
       return axios.post('/find-clashes', {
         course_id:id,
         course_ids:list}
       )
         .then( response => {
-            console.log('response.data:'+course_name+' '+response.data);
+            //console.log('response.data:'+course_name+' '+response.data);
             if(response.data.length>0) {
-              console.log('here');
+              //console.log('here');
               clash=true
             }
           return {
@@ -39,10 +39,10 @@ const Selected = (props) => {
           }
         } )
         .catch( error => {
-            console.log('useEffect Error fetching filter!', error);
+            //console.log('useEffect Error fetching filter!', error);
         } );
     })).then(_courses => {
-      console.log(_courses);
+      //console.log(_courses);
       setCourses(_courses)
       setCredits(_courses.map(item => item.credits).reduce((prev, next) => prev + next))
     });
