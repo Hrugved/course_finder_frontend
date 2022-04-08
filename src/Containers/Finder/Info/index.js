@@ -15,6 +15,7 @@ const Info = (props) => {
 
   const {selected_course,courses_map,selected_courses_list} = props
   useEffect(() => {
+    if(selected_course==null) return
     set_course(courses_map.get(selected_course))
     const list = [...selected_courses_list]
     if(selected_courses_list.indexOf(selected_course) > -1) {
@@ -52,6 +53,8 @@ const Info = (props) => {
     }
     else btn = ( <div className={styles.add} onClick={() => props.onAdd(course.course_id)}>Add</div> )
   }
+
+  if(course.inst_names==null) {course.inst_names=[];course.inst_emails=[];}
 
   return (
       <div className={styles.wrapper}>

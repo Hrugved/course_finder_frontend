@@ -6,9 +6,8 @@ import styles from './styles.module.css'
 
 const Card = (props) => {
  
-  // //console.log(props);
-  // const bgColor = props.clash ?  'rgba(255,0,0,.5)' : 'rgba(127,255,0,.5)'
   const course = props.courses_map.get(props.courseId)
+
   let wrapperClass = styles.wrapper;
   wrapperClass += " " + (props.clash ? styles.clash : styles.noClash);
 
@@ -26,13 +25,11 @@ const Card = (props) => {
 const mapStateToProps = (state) => {
   return {
     courses_map: state.finder.all_courses_map,
-    selected_course: state.finder.selected_course
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onUpdate: (Clash) => dispatch(actions.onUpdateClash(Clash)),
     onClick: (courseId) => dispatch(actions.onSelectCourse(courseId)) 
   };
 };
